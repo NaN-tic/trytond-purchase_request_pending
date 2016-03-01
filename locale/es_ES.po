@@ -1,0 +1,24 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:purchase.request,pending:"
+msgid "Pending"
+msgstr "Pendiente"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_purchase_request_form_domain_pending"
+msgid "Pending"
+msgstr "Pendiente"
+
+msgctxt "selection:purchase.request,state:"
+msgid "Pending"
+msgstr "Pendiente"
+
+msgctxt "view:purchase.request:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "view:purchase.request:"
+msgid "Pending"
+msgstr "Pendiente"

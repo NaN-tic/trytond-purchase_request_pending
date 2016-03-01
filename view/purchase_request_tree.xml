@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<data>
+    <xpath expr="/tree" position="inside">
+        <button name="draft" string="Draft" tree_invisible="1"/>
+        <button name="to_pending" string="Pending" tree_invisible="1"/>
+    </xpath>
+</data>
