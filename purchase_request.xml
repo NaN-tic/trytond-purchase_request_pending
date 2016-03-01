@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="purchase_request_view_form">
+            <field name="model">purchase.request</field>
+            <field name="name">purchase_request_form</field>
+            <field name="inherit"
+                ref="stock_supply.purchase_request_view_form"/>
+        </record>
+        <record model="ir.ui.view" id="purchase_request_view_tree">
+            <field name="model">purchase.request</field>
+            <field name="name">purchase_request_tree</field>
+            <field name="inherit"
+                ref="stock_supply.purchase_request_view_tree"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="stock_supply.act_purchase_request_form_domain_draft">
+            <field name="domain">[('purchase_line', '=', None), ('pending', '=', False)]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_purchase_request_form_domain_pending">
+            <field name="name">Pending</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('purchase_line', '=', None), ('pending', '=', True)]</field>
+            <field name="act_window"
+                ref="stock_supply.act_purchase_request_form"/>
+        </record>
+
+    </data>
+</tryton>
