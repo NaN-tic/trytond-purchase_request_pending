@@ -5,10 +5,13 @@ import operator
 from trytond.model import ModelView, fields
 from trytond.transaction import Transaction
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval
+from trytond.pyson import Eval, And
 
 __all__ = ['PurchaseRequest']
 
+_STATES = {
+    'readonly': ~Eval('state').in_(['draft', 'pending']),
+    }
 
 class PurchaseRequest:
     __name__ = 'purchase.request'
@@ -22,6 +25,17 @@ class PurchaseRequest:
         pending = ('pending', 'Pending')
         if pending not in cls.state.selection:
             cls.state.selection.append(pending)
+        # set new attributes at all purchase request fields
+        for fname in dir(cls):
+            field = getattr(cls, fname)
+            if hasattr(field, 'states'):
+                if field.states.get('readonly'):
+                    field.states['readonly'] = And(field.states['readonly'],
+                        _STATES['readonly'])
+                else:
+                    field.states['readonly'] = _STATES['readonly']
+                if 'state' not in field.depends:
+                    field.depends.append('state')
         cls._buttons.update({
                 'draft': {
                     'invisible': Eval('state') != 'pending',
