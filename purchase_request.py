@@ -13,6 +13,7 @@ _STATES = {
     'readonly': ~Eval('state').in_(['draft', 'pending']),
     }
 
+
 class PurchaseRequest:
     __name__ = 'purchase.request'
     __metaclass__ = PoolMeta
