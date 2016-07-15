@@ -7,16 +7,16 @@
             <field name="model">purchase.request</field>
             <field name="name">purchase_request_form</field>
             <field name="inherit"
-                ref="stock_supply.purchase_request_view_form"/>
+                ref="purchase_request.purchase_request_view_form"/>
         </record>
         <record model="ir.ui.view" id="purchase_request_view_tree">
             <field name="model">purchase.request</field>
             <field name="name">purchase_request_tree</field>
             <field name="inherit"
-                ref="stock_supply.purchase_request_view_tree"/>
+                ref="purchase_request.purchase_request_view_tree"/>
         </record>
         <record model="ir.action.act_window.domain"
-                id="stock_supply.act_purchase_request_form_domain_draft">
+                id="purchase_request.act_purchase_request_form_domain_draft">
             <field name="domain"
                 eval="[('purchase_line', '=', None), ('pending', '=', False)]"
                 pyson="1"/>
@@ -29,7 +29,7 @@
                 eval="[('purchase_line', '=', None), ('pending', '=', True)]"
                 pyson="1"/>
             <field name="act_window"
-                ref="stock_supply.act_purchase_request_form"/>
+                ref="purchase_request.act_purchase_request_form"/>
         </record>
 
     </data>
