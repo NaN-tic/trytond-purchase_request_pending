@@ -17,17 +17,13 @@
         </record>
         <record model="ir.action.act_window.domain"
                 id="stock_supply.act_purchase_request_form_domain_draft">
-            <field name="domain"
-                eval="[('purchase_line', '=', None), ('pending', '=', False)]"
-                pyson="1"/>
+            <field name="domain">[('purchase_line', '=', None), ('pending', '=', False)]</field>
         </record>
         <record model="ir.action.act_window.domain"
                 id="act_purchase_request_form_domain_pending">
             <field name="name">Pending</field>
             <field name="sequence" eval="20"/>
-            <field name="domain"
-                eval="[('purchase_line', '=', None), ('pending', '=', True)]"
-                pyson="1"/>
+            <field name="domain">[('purchase_line', '=', None), ('pending', '=', True)]</field>
             <field name="act_window"
                 ref="stock_supply.act_purchase_request_form"/>
         </record>
