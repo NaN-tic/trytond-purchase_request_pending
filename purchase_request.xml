@@ -32,5 +32,17 @@
                 ref="purchase_request.act_purchase_request_form"/>
         </record>
 
+        <record model="ir.model.button"
+                id="purchase_request_draft_button">
+            <field name="name">draft</field>
+            <field name="string">Draft</field>
+            <field name="model" search="[('model', '=', 'purchase.request')]"/>
+        </record>
+        <record model="ir.model.button"
+                id="purchase_request_pending_button">
+            <field name="name">to_pending</field>
+            <field name="string">Pending</field>
+            <field name="model" search="[('model', '=', 'purchase.request')]"/>
+        </record>
     </data>
 </tryton>

@@ -11,22 +11,15 @@ Imports::
     >>> from trytond.modules.company.tests.tools import create_company, \
     ...     get_company
     >>> from trytond.modules.account.tests.tools import create_fiscalyear, \
-    ...     create_chart, get_accounts, create_tax, set_tax_code
+    ...     create_chart, get_accounts, create_tax
     >>> from trytond.modules.account_invoice.tests.tools import \
     ...     set_fiscalyear_invoice_sequences, create_payment_term
+    >>> from trytond.tests.tools import activate_modules
     >>> today = datetime.date.today()
 
-Create database::
+Install purchase_request_pending Module::
 
-    >>> config = config.set_trytond()
-    >>> config.pool.test = True
-
-Install stock Module::
-
-    >>> Module = Model.get('ir.module')
-    >>> module, = Module.find([('name', '=', 'purchase_request_pending')])
-    >>> module.click('install')
-    >>> Wizard('ir.module.install_upgrade').execute('upgrade')
+    >>> config = activate_modules('purchase_request_pending')
 
 Create company::
 
@@ -108,8 +101,8 @@ There is no purchase request::
 
 Create the purchase request::
 
-    >>> create_pr = Wizard('purchase.request.create')
-    >>> create_pr.execute('create_')
+  >>> create_pr = Wizard('stock.supply')
+  >>> create_pr.execute('create_')
 
 There is now a draft purchase request::
 
@@ -119,13 +112,13 @@ There is now a draft purchase request::
     >>> pr.quantity
     1.0
     >>> pr.state
-    'draft'
+    u'draft'
 
 Set the purchase request to pending state::
 
     >>> pr.click('to_pending')
     >>> pr.state
-    'pending'
+    u'pending'
 
 Create more needs of the same product::
 
@@ -149,7 +142,7 @@ Create more needs of the same product::
 
 Another purhcase requests is created::
 
-    >>> create_pr = Wizard('purchase.request.create')
+    >>> create_pr = Wizard('stock.supply')
     >>> create_pr.execute('create_')
     >>> pending_pr, draft_pr = sorted(PurchaseRequest.find([]),
     ...     key=lambda a: a.quantity)
@@ -158,19 +151,19 @@ Another purhcase requests is created::
     >>> pending_pr.quantity
     1.0
     >>> pending_pr.state
-    'pending'
+    u'pending'
     >>> draft_pr.product == product
     True
     >>> draft_pr.quantity
     2.0
     >>> draft_pr.state
-    'draft'
+    u'draft'
 
 Set the purchase request back to draft and chech that they are grouped::
 
     >>> pending_pr.click('draft')
     >>> pending_pr.state
-    'draft'
+    u'draft'
     >>> create_pr = Wizard('purchase.request.create')
     >>> create_pr.execute('create_')
     >>> draft_pr, = PurchaseRequest.find([])
@@ -179,4 +172,4 @@ Set the purchase request back to draft and chech that they are grouped::
     >>> draft_pr.quantity
     3.0
     >>> draft_pr.state
-    'draft'
+    u'draft'
