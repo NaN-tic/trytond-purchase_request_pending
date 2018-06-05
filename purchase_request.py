@@ -62,10 +62,10 @@ class PurchaseRequest:
     def to_pending(cls, requests):
         cls.write(requests, {'pending': True})
 
-    def get_state(self, name):
+    def get_state(self):
         if self.pending and not self.purchase_line:
             return 'pending'
-        return super(PurchaseRequest, self).get_state(name)
+        return super(PurchaseRequest, self).get_state()
 
     @classmethod
     def generate_requests(cls, products=None, warehouses=None):
