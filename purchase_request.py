@@ -56,11 +56,13 @@ class PurchaseRequest:
     @ModelView.button
     def draft(cls, requests):
         cls.write(requests, {'pending': False})
+        cls.update_state(requests)
 
     @classmethod
     @ModelView.button
     def to_pending(cls, requests):
         cls.write(requests, {'pending': True})
+        cls.update_state(requests)
 
     def get_state(self):
         if self.pending and not self.purchase_line:
