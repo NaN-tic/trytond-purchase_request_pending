@@ -164,7 +164,7 @@ Set the purchase request back to draft and chech that they are grouped::
     >>> pending_pr.click('draft')
     >>> pending_pr.state
     u'draft'
-    >>> create_pr = Wizard('purchase.request.create')
+    >>> create_pr = Wizard('stock.supply')
     >>> create_pr.execute('create_')
     >>> draft_pr, = PurchaseRequest.find([])
     >>> draft_pr.product == product
