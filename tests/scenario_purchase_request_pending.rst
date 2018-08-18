@@ -120,13 +120,13 @@ There is now a draft purchase request::
     >>> pr.quantity
     1.0
     >>> pr.state
-    u'draft'
+    'draft'
 
 Set the purchase request to pending state::
 
     >>> pr.click('to_pending')
     >>> pr.state
-    u'pending'
+    'pending'
 
 Create more needs of the same product::
 
@@ -159,19 +159,19 @@ Another purhcase requests is created::
     >>> pending_pr.quantity
     1.0
     >>> pending_pr.state
-    u'pending'
+    'pending'
     >>> draft_pr.product == product
     True
     >>> draft_pr.quantity
     2.0
     >>> draft_pr.state
-    u'draft'
+    'draft'
 
 Set the purchase request back to draft and chech that they are grouped::
 
     >>> pending_pr.click('draft')
     >>> pending_pr.state
-    u'draft'
+    'draft'
     >>> create_pr = Wizard('stock.supply')
     >>> create_pr.execute('create_')
     >>> draft_pr, = PurchaseRequest.find([])
@@ -180,4 +180,4 @@ Set the purchase request back to draft and chech that they are grouped::
     >>> draft_pr.quantity
     3.0
     >>> draft_pr.state
-    u'draft'
+    'draft'

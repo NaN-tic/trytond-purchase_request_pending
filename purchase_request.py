@@ -14,9 +14,8 @@ _STATES = {
     }
 
 
-class PurchaseRequest:
+class PurchaseRequest(metaclass=PoolMeta):
     __name__ = 'purchase.request'
-    __metaclass__ = PoolMeta
 
     pending = fields.Boolean('Pending', readonly=True)
 
