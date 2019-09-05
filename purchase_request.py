@@ -39,11 +39,11 @@ class PurchaseRequest(metaclass=PoolMeta):
         cls._buttons.update({
                 'draft': {
                     'invisible': Eval('state') != 'pending',
-                    'icon': 'tryton-go-previous',
+                    'icon': 'tryton-back',
                     },
                 'to_pending': {
                     'invisible': Eval('state') != 'draft',
-                    'icon': 'tryton-go-next',
+                    'icon': 'tryton-forward',
                     },
                 })
 
