@@ -4,8 +4,8 @@
 <data>
     <xpath expr="/form" position="inside">
         <group id="buttons" colspan="4" col="2">
-            <button name="draft" string="Draft"/>
-            <button name="to_pending" string="Pending"/>
+            <button name="draft"/>
+            <button name="to_pending"/>
         </group>
     </xpath>
 </data>
