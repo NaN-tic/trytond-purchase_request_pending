@@ -34,8 +34,7 @@ class PurchaseRequest(metaclass=PoolMeta):
                         _STATES['readonly'])
                 else:
                     field.states['readonly'] = _STATES['readonly']
-                if 'state' not in field.depends:
-                    field.depends.append('state')
+                field.depends.add('state')
         cls._buttons.update({
                 'draft': {
                     'invisible': Eval('state') != 'pending',
