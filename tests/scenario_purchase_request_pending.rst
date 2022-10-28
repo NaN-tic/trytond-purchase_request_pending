@@ -15,7 +15,6 @@ Imports::
     >>> from trytond.modules.account_invoice.tests.tools import \
     ...     set_fiscalyear_invoice_sequences, create_payment_term
     >>> from trytond.tests.tools import activate_modules
-    >>> today = datetime.date.today()
 
 Install purchase_request_pending Module::
 
@@ -83,6 +82,7 @@ Get stock locations::
 
 Create a need for missing product::
 
+    >>> today = datetime.date.today()
     >>> ShipmentOut = Model.get('stock.shipment.out')
     >>> shipment_out = ShipmentOut()
     >>> shipment_out.planned_date = today
