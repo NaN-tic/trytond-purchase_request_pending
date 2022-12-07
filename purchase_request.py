@@ -81,6 +81,7 @@ class PurchaseRequest(metaclass=PoolMeta):
         requests = Request.search([
                 ('purchase_line', '=', None),
                 ('pending', '=', True),
+                ('product', '!=', None),
                 ])
         # Fetch data from existing requests
         existing_req = {}
