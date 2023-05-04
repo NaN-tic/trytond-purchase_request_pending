@@ -109,8 +109,7 @@ There is no purchase request::
 
 Create the purchase request::
 
-  >>> create_pr = Wizard('stock.supply')
-  >>> create_pr.execute('create_')
+  >>> Wizard('stock.supply').execute('create_')
 
 There is now a draft purchase request::
 
@@ -150,8 +149,7 @@ Create more needs of the same product::
 
 Another purhcase requests is created::
 
-    >>> create_pr = Wizard('stock.supply')
-    >>> create_pr.execute('create_')
+    >>> Wizard('stock.supply').execute('create_')
     >>> pending_pr, draft_pr = sorted(PurchaseRequest.find([]),
     ...     key=lambda a: a.quantity)
     >>> pending_pr.product == product
@@ -172,8 +170,7 @@ Set the purchase request back to draft and chech that they are grouped::
     >>> pending_pr.click('draft')
     >>> pending_pr.state
     'draft'
-    >>> create_pr = Wizard('stock.supply')
-    >>> create_pr.execute('create_')
+    >>> Wizard('stock.supply').execute('create_')
     >>> draft_pr, = PurchaseRequest.find([])
     >>> draft_pr.product == product
     True

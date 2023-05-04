@@ -74,7 +74,7 @@ class PurchaseRequest(metaclass=PoolMeta):
                 warehouses)
 
     @classmethod
-    def compare_requests(cls, new_requests):
+    def compare_requests(cls, new_requests, company):
         pool = Pool()
         Uom = pool.get('product.uom')
         Request = pool.get('purchase.request')
@@ -96,7 +96,7 @@ class PurchaseRequest(metaclass=PoolMeta):
                         })
 
         new_requests = super(PurchaseRequest, cls).compare_requests(
-            new_requests)
+            new_requests, company)
         new_requests.sort(key=operator.attrgetter('supply_date'))
         for new_req in new_requests:
             for old_req in existing_req.get(
