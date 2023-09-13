@@ -92,7 +92,7 @@ class PurchaseRequest(metaclass=PoolMeta):
                         'supply_date': (
                             request.supply_date or datetime.date.max),
                         'quantity': request.quantity,
-                        'uom': request.uom,
+                        'unit': request.unit,
                         })
 
         new_requests = super(PurchaseRequest, cls).compare_requests(
@@ -102,12 +102,12 @@ class PurchaseRequest(metaclass=PoolMeta):
             for old_req in existing_req.get(
                     (new_req.product.id, new_req.warehouse.id), []):
                 if old_req['supply_date'] <= new_req.supply_date:
-                    quantity = Uom.compute_qty(old_req['uom'],
-                        old_req['quantity'], new_req.uom)
+                    quantity = Uom.compute_qty(old_req['unit'],
+                        old_req['quantity'], new_req.unit)
                     new_req.quantity = max(0.0, new_req.quantity - quantity)
                     new_req.computed_quantity = new_req.quantity
-                    old_req['quantity'] = Uom.compute_qty(new_req.uom,
-                        max(0.0, quantity - new_req.quantity), old_req['uom'])
+                    old_req['quantity'] = Uom.compute_qty(new_req.unit,
+                        max(0.0, quantity - new_req.quantity), old_req['unit'])
                 else:
                     break
         return new_requests
