@@ -35,12 +35,12 @@
         <record model="ir.model.button" id="purchase_request_draft_button">
             <field name="name">draft</field>
             <field name="string">Draft</field>
-            <field name="model" search="[('model', '=', 'purchase.request')]"/>
+            <field name="model">purchase.request</field>
         </record>
         <record model="ir.model.button" id="purchase_request_pending_button">
             <field name="name">to_pending</field>
             <field name="string">Pending</field>
-            <field name="model" search="[('model', '=', 'purchase.request')]"/>
+            <field name="model">purchase.request</field>
         </record>
     </data>
 </tryton>
